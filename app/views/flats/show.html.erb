@@ -1,0 +1,7 @@
+<h1><%= @flat["name"] %></h1>
+<h2><%= @flat["price"] %> <%= @flat["priceCurrency"] %></h2>
+<%# For Rails, use image_tag %>
+
+<%= image_tag @flat["imageUrl"], alt: @flat["name"], width: 500 %>
+
+<%= link_to "Go Back", root_path %>
