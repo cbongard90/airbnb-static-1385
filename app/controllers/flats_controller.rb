@@ -1,19 +1,20 @@
 require "open-uri"
 
 class FlatsController < ApplicationController
-  def index
-    url = "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json"
-    @flats = JSON.parse(URI.open(url).read)
-  end
+  URL = "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json"
+  before_action :set_flats
 
+  def index
+  end
 
   def show
-    # get the JSON
-    url = "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json"
-    flats = JSON.parse(URI.open(url).read)
-
     # get the flat according to the params[:id]
-    @flat = flats.find { |flat| flat["id"] == params[:id].to_i }
+    @flat = @flats.find { |flat| flat["id"] == params[:id].to_i }
   end
 
+  private
+
+  def set_flats
+    @flats = JSON.parse(URI.open(URL).read)
+  end
 end
